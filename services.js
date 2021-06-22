@@ -26,12 +26,12 @@ app.get("/", (req, res) => {
     // Collects the ip of the user hitting the service - also returns
     // a count of hits because this is a demo
     ipTracker.request_handled(req.ip);
-    res.send(ipTracker.top());
+    res.send(ipTracker.top100());
 })
 
 app.get("/api/hits", (req, res) => {
     // Gets list of hits without updating count
-    res.send(ipTracker.top());
+    res.send(ipTracker.top100());
 })
 
 app.get("/api/clear", (req, res) => {

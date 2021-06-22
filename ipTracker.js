@@ -1,6 +1,6 @@
 class IPTrack {
     #ipCountMap = null;
-    #top100 = [];
+    #top100List = [];
 
     constructor() {
         this.#ipCountMap = new Map();
@@ -28,14 +28,14 @@ class IPTrack {
     }
 
     // @Returns - top 100 items in the list of stored ip addresses
-    top() {
-        return this.#top100.map(t => ( { id: t, count: this.#ipCountMap[t] } ));
+    top100() {
+        return this.#top100List.map(t => ( { id: t, count: this.#ipCountMap[t] } ));
     }
 
     // clears the stored item list and the top 100
     clear() {
         this.#ipCountMap = new Map();
-        this.#top100 = [];
+        this.#top100List = [];
     }
 
     // private methods
@@ -51,14 +51,14 @@ class IPTrack {
 
     #updateTop100(lastIp) {
         //get a copy of the top 100
-        const topCopy = [...this.#top100];
+        const topCopy = [...this.#top100List];
         
         if(topCopy.indexOf(lastIp) === -1) {
             topCopy.push(lastIp);
         }
 
         // map the top 10 or 11 ips to their values
-        this.#top100 = topCopy
+        this.#top100List = topCopy
             .map(ip => ({
                 ip,
                 count: this.#ipCountMap[ip]        
