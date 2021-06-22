@@ -1,7 +1,8 @@
 class MockData {
     #ipList = [];
 
-    constructor(itemCount = 100) {
+    // defaults to 1000 items, but can be initialized with any amount
+    constructor(itemCount = 1000) {
         this.generate(itemCount);
     }
 

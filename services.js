@@ -41,6 +41,23 @@ app.get("/api/clear", (req, res) => {
     res.send("count cleared");
 })
 
+app.get("/api/generate", (req, res) => {
+    count = 1000;
+    if(req.query.count) {
+        count = req.query.count;
+    }
+    // Just for demo reasons - would not
+    // do it this way normally
+    ipTracker.clear();
+    mockData.generate(count);
+    mockData.get().forEach(m => {
+        ipTracker.request_handled(m);
+    })
+    res.send(`generated ${count} items`);
+
+})
+
+
 
 app.listen(port, () => {
     console.log(`Starting services on port ${port}`);
